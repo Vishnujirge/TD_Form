@@ -1,0 +1,161 @@
+<div class="container mt-5">
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <div class="card">
+        <div class="card-body">
+          <form #signUpForm="ngForm" (ngSubmit)="AddData()">
+            <div class="form-group">
+              <label for="userName"
+                >userName <sup class="text-danger">*</sup></label
+              >
+              <input
+                required
+                ngModel
+                name="userName"
+                #username="ngModel"
+                type="text"
+                class="form-control"
+                pattern="[A-Za-z]+"
+                minlength="8"
+                maxlength="12"
+              />
+
+              <strong
+                class="text-danger"
+                *ngIf="username.touched && username.hasError('required')"
+                >userName is a required field</strong
+              >
+
+              <strong
+                *ngIf="username.dirty && username.hasError('pattern')"
+                class="text-danger"
+              >
+                Username should have only alphabets...
+              </strong>
+
+              <strong
+                class="text-danger"
+                *ngIf="username.dirty && username.hasError('minlength')"
+              >
+                minlength of userName should be
+                {{username.errors?.['minlength'].requiredLength}} and actual
+                length is
+                {{username.errors?.['minlength'].actualLength}}
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email <sup class="text-danger">*</sup></label>
+              <input
+                required
+                ngModel
+                name="email"
+                #email="ngModel"
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                type="text"
+                class="form-control"
+              />
+            </div>
+
+            <strong
+              class="text-danger"
+              *ngIf="email.touched && email.hasError('required')"
+            >
+              Email is required field !!!
+            </strong>
+            <strong
+              class="text-danger"
+              *ngIf="email.touched && email.hasError('pattern')"
+            >
+              please enter valid email address (abc@gmail.com)
+            </strong>
+
+            <div class="form-group">
+              <label for="secretQuestion"
+                >secret Question <sup class="text-danger">*</sup></label
+              >
+              <select
+                required
+                #secretQuestion="ngModel"
+                ngModel
+                name="secretQuestion"
+                id="secretQuestion"
+                class="form-control"
+              >
+                <option value="favBoot">Favourite Book</option>
+                <option value="favSport">Favourite Sport</option>
+              </select>
+
+              <strong
+                *ngIf="
+                  secretQuestion.touched && secretQuestion.hasError('required')
+                "
+                class="text-danger"
+              >
+                Favourate Question is a required field !!!
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="answer">Answer<sup class="text-danger">*</sup></label>
+              <textarea
+                rows="2"
+                required
+                name="answer"
+                ngModel
+                #answer="ngModel"
+                type="text"
+                class="form-control"
+              ></textarea>
+
+              <strong
+                class="text-danger"
+                *ngIf="answer.touched && answer.hasError('required')"
+                >Answer is a required field !!</strong
+              >
+            </div>
+
+            <div class="form-group">
+              <label *ngFor="let moc of mocArr" [for]="moc.contactMode">
+                <input
+                  type="radio"
+                  name="modeofContact"
+                  ngModel
+                  [id]="moc.id"
+                  [value]="moc.contactMode"
+                />
+                {{ moc.contactMode }}
+              </label>
+            </div>
+
+            <div class="form-group">
+              <label for="isSubscribed">
+                <input
+                  type="checkbox"
+                  name="isSubscribed"
+                  ngModel
+                  [value]="false"
+                  id="checkbox"
+                />
+
+                Subscribe for daily mails
+              </label>
+            </div>
+
+            <button
+              [disabled]="signUpForm.invalid"
+              type="submit"
+              class="btn btn-primary mr-2"
+            >
+              sign Up
+            </button>
+
+            <button (click)="patchData()" type="button" class="btn btn-primary">
+              Edit
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
