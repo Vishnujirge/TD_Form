@@ -1,0 +1,172 @@
+<div class="container">
+  <div class="row">
+    <div class="col-md-6 offset-3">
+      <div class="card mt-4">
+        <div class="card-body">
+          <form #signUpForm="ngForm" (ngSubmit)="onSub()">
+            <div class="form-group mb-3">
+              <label>User Name</label>
+
+              <input
+                type="text"
+                class="form-control"
+                name="username"
+                ngModel
+                #username="ngModel"
+                required
+                minlength="6"
+                pattern="[A-Za-z]+"
+              />
+
+              <small
+                class="text-danger"
+                *ngIf="username.touched && username.errors?.['required']"
+              >
+                Username is required.
+              </small>
+
+              <small
+                class="text-danger"
+                *ngIf="username.dirty && username.errors?.['pattern']"
+              >
+                Only alphabets are allowed.
+              </small>
+
+              <small
+                class="text-danger"
+                *ngIf="username.dirty && username.errors?.['minlength']"
+              >
+                Minimum length should be
+                {{ username.errors?.["minlength"].requiredLength }}, actual
+                length is {{ username.errors?.["minlength"].actualLength }}.
+              </small>
+            </div>
+
+            <div class="form-group mb-3">
+              <label>Email</label>
+
+              <input
+                type="email"
+                class="form-control"
+                name="email"
+                ngModel
+                #email="ngModel"
+                required
+                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+              />
+
+              <small
+                class="text-danger"
+                *ngIf="email.touched && email.errors?.['required']"
+              >
+                Email is required.
+              </small>
+
+              <small
+                class="text-danger"
+                *ngIf="email.dirty && email.errors?.['email']"
+              >
+                Enter a valid email address.
+              </small>
+
+              <small
+                class="text-danger"
+                *ngIf="email.dirty && email.hasError('pattern')"
+              >
+                Please enter a valid email address (abc@gmail.com)
+              </small>
+            </div>
+
+            <!-- <div class="form-group">
+              <label for="secretQuestion"> Secret Question</label>
+              <select
+                required
+                ngModel
+                name="screctQuestion"
+                id="screctQuestion"
+                #screctQuestion="ngModel"
+                class="form-control"
+              >
+                <option value="favBook">Favourate Book</option>
+                <option value="favSport">Favourate Sports</option>
+              </select>
+
+              <strong
+                class="text-danger"
+                *ngIf="screctQuestion.touched && screctQuestion.hasError('required')
+                "
+              >
+                Favourate Quations is a required filed !!!
+              </strong>
+            </div> -->
+
+            <div class="form-group">
+              <label for="secretQuestion">Secret Question</label>
+
+              <select
+                required
+                ngModel
+                name="secretQuestion"
+                id="secretQuestion"
+                #secretQuestion="ngModel"
+                class="form-control"
+              >
+                <option value="" disabled>Select a secret question</option>
+                <option value="favBook">Favorite Book</option>
+                <option value="favSport">Favorite Sport</option>
+              </select>
+
+              <strong
+                class="text-danger"
+                *ngIf="
+                  secretQuestion.touched && secretQuestion.hasError('required')
+                "
+              >
+                Secret Question is a required field!
+              </strong>
+            </div>
+
+            <div class="form-group">
+              <label for="answer">Answer</label>
+              <textarea
+                required
+                class="form-control"
+                ngModel
+                rows="2"
+                #answer="ngModel"
+                name="answer"
+                id="answer" 
+              >
+              </textarea>
+
+              <small
+                class="text-danger"
+                *ngIf="answer.touched && answer.hasError('required')"
+              >
+                answer is required field
+              </small>
+            </div>
+
+            <!-- (optional feaild) -->
+            <div class="form-group">
+              <label for="isSubscribed">
+                <input
+                  type="checkbox"
+                  ngModel
+                  name="isSubscribed"
+                  id="isSubscribed"
+                />
+                Subscribe form daily mails
+              </label>
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-4 w-100">
+              Sign Up
+            </button>
+            <!-- [disabled]="signUpForm.invalid" -->
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

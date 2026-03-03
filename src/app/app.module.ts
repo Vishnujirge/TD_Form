@@ -5,11 +5,13 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TemplateDrivenFormComponent } from './components/template-driven-form/template-driven-form.component';
 import { FormsModule } from '@angular/forms';
+import { TDFormComponent } from './components/td-form/td-form.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    TemplateDrivenFormComponent
+    TemplateDrivenFormComponent,
+    TDFormComponent
   ],
   imports: [
     BrowserModule,
