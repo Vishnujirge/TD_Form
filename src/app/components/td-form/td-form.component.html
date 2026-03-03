@@ -4,7 +4,7 @@
       <div class="card mt-4">
         <div class="card-body">
           <h3 class="text-center font-weight-bold font-italic">
-            TUC Class TD - Form
+           TD - Form
           </h3>
 
           <form #signUpForm="ngForm" (ngSubmit)="onSub()">
@@ -36,14 +36,14 @@
                 Only alphabets are allowed.
               </small>
 
-              <small
+              <strong
                 class="text-danger"
                 *ngIf="username.dirty && username.errors?.['minlength']"
               >
                 Minimum length should be
                 {{ username.errors?.["minlength"].requiredLength }}, actual
                 length is {{ username.errors?.["minlength"].actualLength }}.
-              </small>
+              </strong>
             </div>
 
             <div class="form-group mb-3">
@@ -59,26 +59,26 @@
                 pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
               />
 
-              <small
+              <strong
                 class="text-danger"
                 *ngIf="email.touched && email.errors?.['required']"
               >
                 Email is required.
-              </small>
+              </strong>
 
-              <small
+              <strong
                 class="text-danger"
                 *ngIf="email.dirty && email.errors?.['email']"
               >
                 Enter a valid email address.
-              </small>
+              </strong>
 
-              <small
+              <strong
                 class="text-danger"
                 *ngIf="email.dirty && email.hasError('pattern')"
               >
                 Please enter a valid email address (abc@gmail.com)
-              </small>
+              </strong>
             </div>
 
             <!-- <div class="form-group">
