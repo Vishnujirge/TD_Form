@@ -3,6 +3,10 @@
     <div class="col-md-6 offset-3">
       <div class="card mt-4">
         <div class="card-body">
+          <h3 class="text-center font-weight-bold font-italic">
+            TUC Class TD - Form
+          </h3>
+
           <form #signUpForm="ngForm" (ngSubmit)="onSub()">
             <div class="form-group mb-3">
               <label>User Name</label>
@@ -52,7 +56,7 @@
                 ngModel
                 #email="ngModel"
                 required
-                pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
+                pattern="^[a-zA-Z0-9._%+\-]+@[a-zA-Z0-9.\-]+\.[a-zA-Z]{2,}$"
               />
 
               <small
@@ -135,7 +139,7 @@
                 rows="2"
                 #answer="ngModel"
                 name="answer"
-                id="answer" 
+                id="answer"
               >
               </textarea>
 
@@ -160,9 +164,62 @@
               </label>
             </div>
 
-            <button type="submit" class="btn btn-primary mt-4 w-100">
-              Sign Up
-            </button>
+            <!-- <div class="form-group">
+              <label for="mocPhone" class="mr-2">
+                <input
+                  type="radio"
+                  value="phone"
+                  required
+                  ngModel
+                  name="modeofContact"
+                  id="mocPhone"
+                />Phone
+              </label>
+
+              <label for="mocPEmail">
+                <input
+                  type="radio"
+                  value="email"
+                  required
+                  ngModel
+                  #mocEmail="ngModel"
+                  name="modeofContact"
+                  id="mocPEmail"
+                />Email
+              </label>
+            </div> -->
+
+            <div class="form-group">
+              <label
+                [for]="moc.contactMode"
+                class="mr-2"
+                *ngFor="let moc of mocArr"
+              >
+                <input
+                  type="radio"
+                  name="modeofContact"
+                  [id]="moc.id"
+                  ngModel
+                  [value]="moc.contactMode"
+                />
+                {{ moc.contactMode }}
+              </label>
+            </div>
+
+            <div class="d-flex align-items-center">
+              <button type="submit" class="btn btn-primary mt-4 mr-2">
+                Sign Up
+              </button>
+
+              <button
+                type="button"
+                class="btn btn-warning mt-4"
+                (click)="patchValue()"
+              >
+                Edit
+              </button>
+            </div>
+
             <!-- [disabled]="signUpForm.invalid" -->
           </form>
         </div>

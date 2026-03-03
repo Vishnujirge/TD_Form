@@ -12,6 +12,24 @@ export class TDFormComponent implements OnInit {
 
   constructor() {}
 
+  patchValue() {
+    this.signUpForm.form.patchValue(this.userDetails);
+  }
+
+  userDetails = {
+    username: 'vishnu',
+    email: 'jv@gmail.com',
+    secretQuestion: 'favBook',
+    answer: 'Naruto',
+    isSubscribed: true,
+    modeofContact: 'Email',
+  };
+
+  mocArr = [
+    { contactMode: 'Email', id: 123 },
+    { contactMode: 'Phone', id: 124 },
+  ];
+
   ngOnInit(): void {
     // setTimeout(() => {
     //   console.log(this.signUpForm);
@@ -19,7 +37,9 @@ export class TDFormComponent implements OnInit {
   }
 
   onSub() {
-    console.log(this.signUpForm);
-    console.log(this.signUpForm.form.value);
+    if (this.signUpForm.valid) {
+      console.log(this.signUpForm);
+      console.log(this.signUpForm.form.value);
+    }
   }
 }
