@@ -23,8 +23,8 @@
               <strong
                 class="text-danger"
                 *ngIf="username.touched && username.hasError('required')"
-                >userName is a required field</strong
-              >
+                >userName is a required field
+                </strong>
 
               <strong
                 *ngIf="username.dirty && username.hasError('pattern')"
@@ -71,9 +71,9 @@
             </strong>
 
             <div class="form-group">
-              <label for="secretQuestion"
-                >secret Question <sup class="text-danger">*</sup></label
-              >
+              <label for="secretQuestion">
+                secret Question <sup class="text-danger">*</sup>
+                </label>
               <select
                 required
                 #secretQuestion="ngModel"
